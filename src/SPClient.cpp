@@ -4,7 +4,7 @@
 #include "JsonStreamScanner.h"
 #include "SPClient.h"
 
-#define authRedirectURL "http://dialplayredirect.local/authredirected"
+#define authRedirectURL "https://k-natori.github.io/DialPlay/callback.html"
 #define authtokenURL "https://accounts.spotify.com/api/token"
 
 // Generate random 64 characters
