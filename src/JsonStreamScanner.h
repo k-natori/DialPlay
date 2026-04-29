@@ -3,10 +3,6 @@
 
 #include <Arduino.h>
 
-/*
-JsonStreamScanner is a class to scan JSON data from desinated Stream.
-*/
-
 class JsonStreamScanner
 {
 public:
@@ -24,9 +20,19 @@ private:
   Stream *_stream;
   boolean _chunked;
   long _chunkSize;
-  String _path = "";
-  boolean _push = false;
-  boolean _isValue = false;
+  String _path;
+  boolean _push;
+  int _pathDepths[16];
+  int _objDepth;
+  int _peeked;
+  boolean _hasPeeked;
+
+  int readRawChar();
+  int readChar();
+  int peekChar();
+  String readJsonString();
+  void skipWhitespace();
+  void skipPrimitive();
 };
 
 #endif

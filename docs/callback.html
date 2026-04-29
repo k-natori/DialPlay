@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DialPlay – Spotify Auth</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #121212;
+      color: #fff;
+    }
+    p { color: #aaa; font-size: 0.9rem; }
+    .error { color: #f55; }
+  </style>
+</head>
+<body>
+  <h2>DialPlay</h2>
+  <p id="msg">DialPlay へ転送中...</p>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const code  = params.get('code');
+    const state = params.get('state');
+    const error = params.get('error');
+
+    if (error) {
+      document.getElementById('msg').textContent = '認証エラー: ' + error;
+      document.getElementById('msg').className = 'error';
+    } else if (code && state) {
+      const target = 'http://dialplayredirect.local/authredirected'
+        + '?code='  + encodeURIComponent(code)
+        + '&state=' + encodeURIComponent(state);
+      location.href = target;
+    } else {
+      document.getElementById('msg').textContent = 'パラメータが不足しています。';
+      document.getElementById('msg').className = 'error';
+    }
+  </script>
+</body>
+</html>

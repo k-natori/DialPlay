@@ -34,7 +34,7 @@ std::vector<String> wifiVector;
 const IPAddress myAPIP(192, 168, 0, 1);
 const IPAddress subnet(255, 255, 255, 0);
 String AP_ssid = "DialPlay";
-String AP_pass = "DialPlay";
+String AP_pass = "12345678";
 DNSServer dnsServer;
 WebServer webServer(80);
 
